@@ -1,6 +1,17 @@
 import re
+import os
 
 import streamlit as st
+
+from dotenv import load_dotenv
+
+load_dotenv()
+if not os.getenv("GROQ_API_KEY"):
+    try:
+        os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+    except (KeyError, FileNotFoundError):
+        pass
+
 from serve import chain
 
 

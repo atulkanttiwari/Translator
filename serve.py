@@ -9,7 +9,7 @@ load_dotenv()
 
 groq_api_key=os.getenv("GROQ_API_KEY")
 if not groq_api_key:
-    raise RuntimeError("GROQ_API_KEY is missing. Add it to the .env file.")
+    raise RuntimeError("GROQ_API_KEY is missing. Add it to .env locally or Streamlit Cloud Secrets.")
 
 model=ChatGroq(model="qwen/qwen3.6-27b",groq_api_key=groq_api_key)
 
