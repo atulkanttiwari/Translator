@@ -1,3 +1,4 @@
+import html
 import re
 import os
 
@@ -71,7 +72,7 @@ st.markdown(
 
 def clean_response(response: str) -> str:
     """Remove hidden reasoning if the selected model returns it."""
-    cleaned = re.sub(r"<think>.*?</think>", "", response, flags=re.DOTALL | re.IGNORECASE)
+    cleaned = re.sub(r"<think>.*?(?:</think>|$)", "", response, flags=re.DOTALL | re.IGNORECASE)
     return cleaned.strip()
 
 
@@ -115,7 +116,8 @@ with left:
 with right:
     st.markdown('<div class="panel-label">Translation</div>', unsafe_allow_html=True)
     if "translation" in st.session_state:
-        st.markdown(f'<div class="result">{st.session_state.translation}</div>', unsafe_allow_html=True)
+        safe_translation = html.escape(st.session_state.translation)
+        st.markdown(f'<div class="result">{safe_translation}</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="result empty">Your translation will appear here.</div>', unsafe_allow_html=True)
 

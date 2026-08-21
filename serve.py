@@ -23,10 +23,18 @@ if not groq_api_key:
         "GROQ_API_KEY is missing. Add GROQ_API_KEY to Streamlit Cloud Settings > Secrets."
     )
 
-model=ChatGroq(model="qwen/qwen3.6-27b",groq_api_key=groq_api_key)
+model = ChatGroq(
+    model="qwen/qwen3.6-27b",
+    groq_api_key=groq_api_key,
+    temperature=0,
+)
 
 # 1.Create prompt template
-system_template = "Translate the following into {language}:"
+system_template = (
+    "Translate the user's English text into {language}. "
+    "Return only the translation. Do not include explanations, alternatives, "
+    "metadata, or hidden reasoning. Preserve the original meaning and formatting."
+)
 prompt_template = ChatPromptTemplate.from_messages([
     ('system',system_template),
     ('user','{text}')
