@@ -9,7 +9,16 @@ load_dotenv()
 
 groq_api_key=os.getenv("GROQ_API_KEY")
 if not groq_api_key:
-    raise RuntimeError("GROQ_API_KEY is missing. Add it to .env locally or Streamlit Cloud Secrets.")
+    try:
+        import streamlit as st
+
+        groq_api_key = st.secrets["GROQ_API_KEY"]
+    except (KeyError, FileNotFoundError):
+        pass
+if not groq_api_key:
+    raise RuntimeError(
+        "GROQ_API_KEY is missing. Add GROQ_API_KEY to Streamlit Cloud Settings > Secrets."
+    )
 
 model=ChatGroq(model="qwen/qwen3.6-27b",groq_api_key=groq_api_key)
 
