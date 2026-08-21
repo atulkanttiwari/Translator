@@ -2,6 +2,12 @@
 
 Lingo Forge is an English translation application built with LangChain, Groq, and Streamlit. It provides a simple web interface for translating English text into several languages and also exposes the same translation chain through a FastAPI/LangServe API.
 
+## Live Demo
+
+Try the deployed Streamlit application here:
+
+**[Open Lingo Forge](https://translator-using-genai.streamlit.app/)**
+
 The project demonstrates:
 
 - Calling a hosted chat model with `ChatGroq`
@@ -232,15 +238,20 @@ To create a live application link:
 3. Choose **New app**.
 4. Select the GitHub repository and the `main` branch.
 5. Set the main file to `app.py`.
-6. Open the app settings and add a secret named `GROQ_API_KEY`.
+6. Open the app settings and add the `GROQ_API_KEY` secret:
+
+    ```toml
+    GROQ_API_KEY = "your_new_groq_api_key"
+    ```
+
 7. Deploy the app.
 
 For Streamlit Cloud, the application can read the secret through an environment variable. The existing `load_dotenv()` call is harmless when `.env` is absent in the cloud environment.
 
-The resulting URL will look similar to:
+The current live application is:
 
 ```text
-https://your-app-name.streamlit.app
+https://translator-using-genai.streamlit.app/
 ```
 
 ## Security Notes
