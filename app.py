@@ -6,11 +6,12 @@ import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
-if not os.getenv("GROQ_API_KEY"):
-    try:
-        os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
-    except (KeyError, FileNotFoundError):
-        pass
+try:
+    cloud_key = st.secrets.get("GROQ_API_KEY")
+except (KeyError, FileNotFoundError):
+    cloud_key = None
+if cloud_key:
+    os.environ["GROQ_API_KEY"] = str(cloud_key).strip().strip('"').strip("'")
 
 from serve import chain
 
