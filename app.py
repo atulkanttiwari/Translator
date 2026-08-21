@@ -60,6 +60,8 @@ st.markdown(
     .empty { color: var(--muted); padding-top: 2.5rem; }
     div.stButton > button { background: var(--coral); border: 0; border-radius: 4px; color: white; font-weight: 700; min-height: 2.8rem; }
     div.stButton > button:hover { background: #d85e49; color: white; }
+    div[data-testid="stDownloadButton"] > button { background: var(--ink); border: 0; border-radius: 4px; color: white; font-weight: 700; min-height: 2.8rem; }
+    div[data-testid="stDownloadButton"] > button:hover { background: #2d4741; color: white; }
     textarea { background: var(--card) !important; border-color: var(--line) !important; }
     </style>
     """,
